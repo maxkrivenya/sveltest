@@ -1,8 +1,18 @@
 <script>
+    import Student from "./student.svelte";
+
     let id = "";
     let url = "http://127.0.0.1:8080";
     let address = "";
-    let student = "";
+    let student = {
+        id: "",
+        name:"",
+        surname:"",
+        patronim:"",
+        groupId:"",
+        marks:[],
+        skips:[]
+        };
 
     async function send_request(){
         console.log(student);
@@ -36,10 +46,13 @@
     <button on:click={send_request}>Send GET Request</button> 
 
 	<h2>
-         <p><i>hell yeah: {id} : {student} </i></p>
+         <p><i>hell yeah: {id} </i></p>
          <br>
          <p>address:{address}</p>
+         <br>
 	</h2>
+
+        <Student {student} />
 </section>
 
 <style>
@@ -60,6 +73,6 @@
 		position: relative;
 		width: 100%;
 		height: 0;
-		padding: 0 0 calc(100% * 495 / 2048) 0;
+        padding:50px;
 	}
 </style>
