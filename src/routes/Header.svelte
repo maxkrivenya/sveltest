@@ -2,6 +2,25 @@
 	import { page } from '$app/stores';
 	import logo from '$lib/images/svelte-logo.svg';
 	import github from '$lib/images/github.svg';
+
+export let act = "GET";
+
+    function get_method(){
+        act = "GET";
+        console.log(act);
+    }
+    function post_method(){
+        act = "POST"
+        console.log(act);
+    }
+    function put_method(){
+        act = "PUT";
+        console.log(act);
+    }
+    function delete_method(){
+        act = "DELETE";
+        console.log(act);
+    }
 </script>
 
 <header>
@@ -18,16 +37,16 @@
 
         <ul>
             <li aria-current={$page.url.pathname === '/' ? 'page' : undefined}>
-                <a href="/">GET</a>
+                 <a href ="/">GET</a>
             </li>
-            <li aria-current={$page.url.pathname === '/about' ? 'page' : undefined}>
-                <a href="/about">POST</a>
+            <li aria-current={$page.url.pathname === '/post' ? 'page' : undefined}> 
+                <a href = "/post">POST</a>
             </li>
-            <li aria-current={$page.url.pathname.startsWith('/sverdle') ? 'page' : undefined}> 
-                <a href="/sverdle">PUT</a> 
+            <li aria-current={$page.url.pathname === '/put' ? 'page' : undefined}> 
+                <a href = "/put">PUT</a>
             </li>
-            <li aria-current={$page.url.pathname.startsWith('/sverdle') ? 'page' : undefined}> 
-                <a href="/sverdle">DELETE</a> 
+            <li aria-current={$page.url.pathname === '/delete' ? 'page' : undefined}>
+                <a href ="/delete">DELETE</a>
             </li>
         </ul>
 
@@ -120,13 +139,14 @@
 		height: 100%;
 		align-items: center;
 		padding: 0 0.5rem;
-		color: var(--color-text);
 		font-weight: 700;
 		font-size: 0.8rem;
 		text-transform: uppercase;
 		letter-spacing: 0.1em;
 		text-decoration: none;
 		transition: color 0.2s linear;
+        border:0px;
+        padding:10px;
 	}
 
 	a:hover {

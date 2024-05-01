@@ -1,5 +1,5 @@
 <script>
-    import Student from "./student.svelte";
+    import Student from "./../student.svelte";
 
     let id = "";
     let url = "http://127.0.0.1:8080";
@@ -17,7 +17,7 @@
     async function send_request(){
         console.log(student);
         address = 
-            url + '/api' + '/student/' + id;
+            url + '/api' + '/student/' + 'delete/' + id;
  
         student = await fetch(address).then((response) => response.json());
 
@@ -26,16 +26,10 @@
 
 </script>
 
-<svelte:head>
-	<title>Home</title>
-	<meta name="description" content="Svelte demo app" />
-</svelte:head>
-
-<section>
-
+<header>
 	<h1>
 		<span class="welcome">
-            lets get this started
+            lets delete some mfs
 		</span>
 	</h1>
 
@@ -44,7 +38,7 @@
     <br>
     <br>
 
-    <button on:click={send_request}>Send GET Request</button> 
+    <button on:click={send_request}>Send KILL Request</button> 
 
 	<h2>
          <p><i>hell yeah: {id} </i></p>
@@ -54,16 +48,9 @@
 	</h2>
 
         <Student {student} />
-</section>
+</header>
 
 <style>
-	section {
-		display: flex;
-		flex-direction: column;
-		justify-content: center;
-		align-items: center;
-		flex: 0.6;
-	}
 
 	h1 {
 		width: 100%;

@@ -1,17 +1,21 @@
 <script>
 	import Header from './Header.svelte';
 	import './styles.css';
+
+    let act = "GET";
 </script>
 
 <div class="app">
-	<Header />
+	<Header bind:act />
 
 	<main>
 		<slot />
 	</main>
 
+
 	<footer>
 	</footer>
+
 </div>
 
 <style>
@@ -40,9 +44,6 @@
 		padding: 12px;
 	}
 
-	footer a {
-		font-weight: bold;
-	}
 
 	@media (min-width: 480px) {
 		footer {
