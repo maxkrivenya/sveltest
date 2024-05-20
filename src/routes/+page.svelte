@@ -57,6 +57,9 @@
         const myHeaders = new Headers();
         myHeaders.append("Content-Type","application/json");
         myHeaders.append("Access-Control-Allow-Origin", "*");
+        myHeaders.append("crossorigin", "true");
+        myHeaders.append("Access-Control-Allow-Methods","GET,POST,PUT,DELETE,OPTIONS");
+
 
         switch(classRadio){
             //student
@@ -177,7 +180,6 @@
             pagenum = pagenum + 1;
             get_list();
     }
-
     async function get_list(){
         let result = "";
         let body = "";
@@ -251,6 +253,7 @@
     </section>
 
     <section>
+    <h2>op={opRadio}</h2>
     <h2>address={address}</h2>
     
         {#if        classRadio === classes[2]}
