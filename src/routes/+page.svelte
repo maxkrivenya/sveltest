@@ -7,7 +7,7 @@
     import Student from "./student.svelte";
     import Professor from './professor.svelte';
     import Radio from './Radio.svelte';
-    import StringStudent from './StringStudent.svelte';
+    import ListStudents from './ListStudents.svelte';
     import ListProfessors from './ListProfessors.svelte';
     import ListGroups from './ListGroups.svelte';
 
@@ -21,7 +21,7 @@
         groupId:"",
         marks:[],
         skips:[]
-        };
+    };
 
     let group = {
         id : "",
@@ -56,19 +56,22 @@
         
         const myHeaders = new Headers();
         myHeaders.append("Content-Type","application/json");
-
+        myHeaders.append("Access-Control-Allow-Origin", "*");
 
         switch(classRadio){
-            case classes[0] : {
+            //student
+            case classes[0] :{
                 id = student.id;
                 body = JSON.stringify(student);
                 break;
             }
+            //group
             case classes[1] : {
                 id = group.id;
                 body = JSON.stringify(group);
                 break;
             }
+            //professor
             case classes[2] : {
                 id = professor.id;
                 body = JSON.stringify(professor);
@@ -81,32 +84,52 @@
         }
 
 
-        if(opRadio==="GET"){
-            address = url + '/api/' + classRadio.toLowerCase() + '/like/' + pagenum;
-            result = await fetch(address, {
-                method: "POST",
-                body: body,
-                headers: myHeaders
-            }).then((response) => response.json());
-            if(result == null){results = []; return;}
-            results = result;
+        switch(opRadio){
+            case "GET" : {
+                address = url + '/api/' + classRadio.toLowerCase() + '/like/' + pagenum;
+                result = await fetch(address, {
+                    method: "POST",
+                    body: body,
+                    headers: myHeaders
+                }).then((response) => response.json());
+                
+                if(result == null){results = []; return;}
+                results = result;
+                break;
+            }
+            case "POST": {
+                address = url + '/api/' + classRadio.toLowerCase() + '/' + id;
+                result = await fetch(address, {
+                    method: opRadio,
+                    body: JSON.stringify(student),
+                    headers: myHeaders
+                }).then((response) => response.json());
+                break;
+            }
+            case "PUT": {
+                address = url + '/api/' + classRadio.toLowerCase() + '/';
+                result = await fetch(address, {
+                    method: opRadio,
+                    body: JSON.stringify(student),
+                    headers: myHeaders
+                }).then((response) => response.json());
+                break;
+            }
+            case "DELETE": {
+                address = url + '/api/' + classRadio.toLowerCase() + '/' + id;
+                result = await fetch(address, {
+                    method: opRadio,
+                    //body: JSON.stringify(student),
+                    headers: myHeaders
+                }).then((response) => response.json());
+                break;
+            }
+            default:{
+                    alert("Unknown method!");
+                    break;
+            }
         }
-        if(opRadio==="POST"){
-            address = url + '/api/' + classRadio.toLowerCase() + '/' + id;
-            result = await fetch(address, {
-                method: opRadio,
-                body: JSON.stringify(student),
-                headers: myHeaders
-        }).then((response) => response.json());
-        }
-        if(opRadio==="PUT"){
-            address = url + '/api/' + classRadio.toLowerCase() + '/';
-            result = await fetch(address, {
-                method: opRadio,
-                body: JSON.stringify(student),
-                headers: myHeaders
-        }).then((response) => response.json());
-        }
+
 
     }
 
@@ -247,7 +270,7 @@
                 bind:userSelected={group}
             />
         {:else}
-            <StringStudent 
+            <ListStudents 
                 options={results} 
                 name={classRadio} 
                 incr_page={incr_page} 
