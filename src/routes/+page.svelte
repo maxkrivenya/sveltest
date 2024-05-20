@@ -11,7 +11,7 @@
     import ListProfessors from './ListProfessors.svelte';
     import ListGroups from './ListGroups.svelte';
 
-    let url     = "https://pnajava.onrender.com/";
+    let url     = "https://pnajava.onrender.com";
     let address = "";
     let student = {
         id: "",
