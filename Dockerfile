@@ -10,4 +10,4 @@ EXPOSE 5173
 
 #ENV NODE_ENV=production
 
-RUN node build
+ENTRYPOINT ["node", "build"]
