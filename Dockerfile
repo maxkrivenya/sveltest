@@ -1,4 +1,4 @@
-FROM svelte-docker
+FROM nathanaelrossel/svelte-docker
 
 COPY . /app
 WORKDIR /app
