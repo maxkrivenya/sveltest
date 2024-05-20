@@ -3,7 +3,7 @@ FROM nathanaelrossel/svelte-docker
 COPY . /app
 WORKDIR /app
 
-RUN npm ci --omit dev
+RUN npm ci
 RUN npm run build
 
 EXPOSE 5173
