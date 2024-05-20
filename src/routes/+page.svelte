@@ -92,6 +92,7 @@
                 address = url + '/api/' + classRadio.toLowerCase() + '/like/' + pagenum;
                 result = await fetch(address, {
                     method: "POST",
+                    mode:"cors",
                     body: body,
                     headers: myHeaders
                 }).then((response) => response.json());
@@ -101,9 +102,10 @@
                 break;
             }
             case "POST": {
-                address = url + '/api/' + classRadio.toLowerCase() + '/' + id;
+                address = url + '/api/' + classRadio.toLowerCase() + '/';
                 result = await fetch(address, {
-                    method: opRadio,
+                    method: "POST",
+                    mode:"cors",
                     body: JSON.stringify(student),
                     headers: myHeaders
                 }).then((response) => response.json());
@@ -113,6 +115,7 @@
                 address = url + '/api/' + classRadio.toLowerCase() + '/';
                 result = await fetch(address, {
                     method: opRadio,
+                    mode:"cors",
                     body: JSON.stringify(student),
                     headers: myHeaders
                 }).then((response) => response.json());
@@ -122,6 +125,7 @@
                 address = url + '/api/' + classRadio.toLowerCase() + '/' + id;
                 result = await fetch(address, {
                     method: opRadio,
+                    mode:"cors",
                     //body: JSON.stringify(student),
                     headers: myHeaders
                 }).then((response) => response.json());
