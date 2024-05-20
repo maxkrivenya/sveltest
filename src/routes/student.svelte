@@ -3,27 +3,45 @@
 </script>
 
 <header>
+
+<div class = "flex-row" style="justify-content:space-evenly;">
    <ul>
         <li>
-            {student.id}
+            <div class="form-control">
+                <input class="input input-alt" placeholder="studentId" required="" type="text" bind:value={student.id}>
+                <span class="input-border input-border-alt"></span>
+            </div>
         </li>
         <li>
-            {student.surname}
+            <div class="form-control">
+                <input class="input input-alt" placeholder="Surname" required="" type="text" bind:value={student.surname}>
+                <span class="input-border input-border-alt"></span>
+            </div>
         </li>
         <li>
-            {student.name}
+            <div class="form-control">
+                <input class="input input-alt" placeholder="Name" required="" type="text" bind:value={student.name}>
+                <span class="input-border input-border-alt"></span>
+            </div>
         </li>
         <li>
-            {student.patronim}
+            <div class="form-control">
+                <input class="input input-alt" placeholder="Patronim" required="" type="text" bind:value={student.patronim}>
+                <span class="input-border input-border-alt"></span>
+            </div>
         </li>
         <li>
-            {student.groupId}
+            <div class="form-control">
+                <input class="input input-alt" placeholder="GroupId" required="" type="text" bind:value={student.groupId}>
+                <span class="input-border input-border-alt"></span>
+            </div>
         </li>
-        <li>
+   </ul>
             <ul> 
+            Marks:
                 <li />
                 {#each student.marks as mark}
-                    <ul>
+                    <ul class="shadow-div">
                         <li>
                             {mark.date}
                         </li>
@@ -37,12 +55,11 @@
                 {/each}
                 <li />
             </ul>
-        </li>
-        <li>
             <ul> 
+            Skips:
                 <li />
                 {#each student.skips as skip}
-                    <ul>
+                    <ul class="shadow-div">
                         <li>
                             {skip.date}
                         </li>
@@ -56,9 +73,14 @@
                 {/each}
                 <li />
             </ul>
-        </li>
-   </ul>
+   </div>
 </header>
 
 <style>
+.flex-row{
+    justify-content:space-evenly;
+}
+ul{
+    margin-right:10px;
+}
 </style>

@@ -2,25 +2,10 @@
 	import { page } from '$app/stores';
 	import logo from '$lib/images/svelte-logo.svg';
 	import github from '$lib/images/github.svg';
+    import types from './+page.svelte';
+	import './styles.css';
 
-export let act = "GET";
-
-    function get_method(){
-        act = "GET";
-        console.log(act);
-    }
-    function post_method(){
-        act = "POST"
-        console.log(act);
-    }
-    function put_method(){
-        act = "PUT";
-        console.log(act);
-    }
-    function delete_method(){
-        act = "DELETE";
-        console.log(act);
-    }
+    let classes = ["Students", "Groups", "Professors"];
 </script>
 
 <header>
@@ -30,30 +15,17 @@ export let act = "GET";
 		</a>
 	</div>
 
-    <nav>
-        <svg viewBox="0 0 2 3" aria-hidden="true">
-            <path d="M0,0 L1,2 C1.5,3 1.5,3 2,3 L2,0 Z" />
-        </svg>
 
-        <ul>
-            <li aria-current={$page.url.pathname === '/' ? 'page' : undefined}>
-                 <a href ="/">GET</a>
-            </li>
-            <li aria-current={$page.url.pathname === '/post' ? 'page' : undefined}> 
-                <a href = "/post">POST</a>
-            </li>
-            <li aria-current={$page.url.pathname === '/put' ? 'page' : undefined}> 
-                <a href = "/put">PUT</a>
-            </li>
-            <li aria-current={$page.url.pathname === '/delete' ? 'page' : undefined}>
-                <a href ="/delete">DELETE</a>
-            </li>
-        </ul>
 
-        <svg viewBox="0 0 2 3" aria-hidden="true">
-            <path d="M0,0 L0,3 C0.5,3 0.5,3 1,2 L2,0 Z" />
-        </svg>
-    </nav>
+<div class="radio-inputs">
+    {#each classes as cl}
+        <label class="radio">
+            <input type="radio" name="class">
+            <span class="name">{cl}</span>
+        </label>
+    {/each}
+</div>
+
 
     <div class="corner">
         <a href="https://github.com/maxkrivenya/pnajava">
@@ -87,67 +59,6 @@ export let act = "GET";
         height: 2em;
         object-fit: contain;
     }
-
-    nav {
-        display: flex;
-        justify-content: center;
-        --background: rgba(255, 255, 255, 0.7);
-    }
-
-    svg {
-        width: 2em;
-        height: 3em;
-        display: block;
-    }
-
-    path {
-        fill: var(--background);
-    }
-
-    ul {
-        position: relative;
-        padding: 0;
-        margin: 0;
-        height: 3em;
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        list-style: none;
-        background: var(--background);
-        background-size: contain;
-    }
-
-    li {
-        position: relative;
-        height: 100%;
-    }
-
-    li[aria-current='page']::before {
-        --size: 6px;
-        content: '';
-        width: 0;
-        height: 0;
-        position: absolute;
-        left: calc(50% - var(--size));
-        left: calc(50% - var(--size));
-		border: var(--size) solid transparent;
-		border-top: var(--size) solid var(--color-theme-1);
-	}
-
-	nav a {
-		display: flex;
-		height: 100%;
-		align-items: center;
-		padding: 0 0.5rem;
-		font-weight: 700;
-		font-size: 0.8rem;
-		text-transform: uppercase;
-		letter-spacing: 0.1em;
-		text-decoration: none;
-		transition: color 0.2s linear;
-        border:0px;
-        padding:10px;
-	}
 
 	a:hover {
 		color: var(--color-theme-1);
