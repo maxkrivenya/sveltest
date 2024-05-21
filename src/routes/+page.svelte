@@ -102,7 +102,7 @@
                 break;
             }
             case "POST": {
-                address = url + '/api/' + classRadio.toLowerCase() + '/';
+                address = url + '/api/' + classRadio.toLowerCase() + '/' + id;
                 result = await fetch(address, {
                     method: "POST",
                     mode:"cors",
@@ -257,8 +257,6 @@
     </section>
 
     <section>
-    <h2>op={opRadio}</h2>
-    <h2>address={address}</h2>
     
         {#if        classRadio === classes[2]}
             <ListProfessors 
