@@ -102,7 +102,7 @@
                 break;
             }
             case "POST": {
-                address = url + '/api/' + classRadio.toLowerCase() + '/' + id;
+                address = url + '/api/' + classRadio.toLowerCase() + '/';
                 result = await fetch(address, {
                     method: "POST",
                     mode:"cors",
@@ -126,7 +126,6 @@
                 result = await fetch(address, {
                     method: opRadio,
                     mode:"cors",
-                    //body: JSON.stringify(student),
                     headers: myHeaders
                 }).then((response) => response.json());
                 break;
